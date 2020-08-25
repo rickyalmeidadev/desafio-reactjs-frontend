@@ -1,4 +1,5 @@
 import React, { SyntheticEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal';
 
 import { INaver } from '../../services/api';
@@ -23,6 +24,8 @@ const NaverCard: React.FC<IProps> = ({
 }) => {
   const { handleNaverToggle, handleDeleteToggle } = useModal();
 
+  const history = useHistory();
+
   const handleBrokenImg = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = picture;
   };
@@ -30,6 +33,10 @@ const NaverCard: React.FC<IProps> = ({
   const handleNaver = () => {
     handleSelectedNavers(id);
     handleNaverToggle();
+  };
+
+  const handleNavigateToEdit = () => {
+    history.push(`/edit/${id}`);
   };
 
   return (
@@ -44,7 +51,7 @@ const NaverCard: React.FC<IProps> = ({
       <Role>{job_role}</Role>
       <Icons>
         <Trash onClick={handleDeleteToggle} />
-        <Pencil />
+        <Pencil onClick={handleNavigateToEdit} />
       </Icons>
     </Container>
   );
