@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  position: relative;
   width: 100%;
   margin-bottom: ${props => props.theme.margins.larger};
 

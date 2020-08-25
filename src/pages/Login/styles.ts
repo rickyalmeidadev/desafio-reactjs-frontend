@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Form as FormikForm } from 'formik';
+
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -18,7 +20,8 @@ export const Content = styled.div`
   align-items: center;
 `;
 
-export const Form = styled.form`
+export const Form = styled(FormikForm)`
+  position: relative;
   width: 100%;
   max-width: 448px;
 
@@ -37,4 +40,17 @@ export const Form = styled.form`
 
 export const Logo = styled.img`
   margin-bottom: ${props => props.theme.margins.larger};
+`;
+
+export const Error = styled.span`
+  position: absolute;
+  color: #9a1306;
+  bottom: 110px;
+`;
+
+export const FieldError = styled(Error)`
+  left: 0;
+  bottom: -${props => props.theme.margins.normal};
+
+  font-size: 1.2rem;
 `;

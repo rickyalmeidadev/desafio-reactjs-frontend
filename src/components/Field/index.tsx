@@ -7,11 +7,12 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
-const Field: React.FC<IProps> = ({ label, name, ...rest }) => {
+const Field: React.FC<IProps> = ({ label, name, children, ...rest }) => {
   return (
     <Wrapper>
       <Label htmlFor={name}>{label}</Label>
       <Input {...rest} name={name} id={name} />
+      {children}
     </Wrapper>
   );
 };
