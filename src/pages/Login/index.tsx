@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import {
   Formik,
@@ -21,6 +22,8 @@ interface ILogin extends ICredentials {
 }
 
 const Login: React.FC = () => {
+  const history = useHistory();
+
   const handleSubmit = async (
     values: ILogin,
     { setErrors, resetForm }: FormikHelpers<ILogin>,
@@ -31,6 +34,7 @@ const Login: React.FC = () => {
       const { token } = response.data;
       localStorage.setItem('nave.rs:token', token);
       resetForm();
+      history.push('/');
     } catch (error) {
       setErrors({
         loginError: 'Falha ao fazer login',
