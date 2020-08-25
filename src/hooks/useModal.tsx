@@ -3,15 +3,22 @@ import React, { createContext, useState, useCallback, useContext } from 'react';
 interface IModalContext {
   naverToggle: boolean;
   handleNaverToggle: () => void;
+  deleteToggle: boolean;
+  handleDeleteToggle: () => void;
 }
 
 const ModalContext = createContext({} as IModalContext);
 
 const ModalContextProvider: React.FC = ({ children }) => {
-  const [naverToggle, setNaverToggle] = useState(true);
+  const [naverToggle, setNaverToggle] = useState(false);
+  const [deleteToggle, setDeleteToggle] = useState(true);
 
   const handleNaverToggle = useCallback(() => {
     setNaverToggle(prevState => !prevState);
+  }, []);
+
+  const handleDeleteToggle = useCallback(() => {
+    setDeleteToggle(prevState => !prevState);
   }, []);
 
   return (
@@ -19,6 +26,8 @@ const ModalContextProvider: React.FC = ({ children }) => {
       value={{
         naverToggle,
         handleNaverToggle,
+        deleteToggle,
+        handleDeleteToggle,
       }}
     >
       {children}
