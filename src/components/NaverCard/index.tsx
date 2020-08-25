@@ -21,7 +21,7 @@ const NaverCard: React.FC<IProps> = ({
   job_role,
   handleSelectedNavers,
 }) => {
-  const { handleNaverToggle } = useModal();
+  const { handleNaverToggle, handleDeleteToggle } = useModal();
 
   const handleBrokenImg = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = picture;
@@ -43,7 +43,7 @@ const NaverCard: React.FC<IProps> = ({
       <Name onClick={handleNaver}>{name}</Name>
       <Role>{job_role}</Role>
       <Icons>
-        <Trash />
+        <Trash onClick={handleDeleteToggle} />
         <Pencil />
       </Icons>
     </Container>
