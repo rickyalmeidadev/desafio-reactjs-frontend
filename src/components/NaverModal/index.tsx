@@ -25,6 +25,14 @@ const NaverModal: React.FC<IProps> = ({
     event.currentTarget.src = picture;
   };
 
+  const formattedBirthdate = birthdate
+    ? new Date().getFullYear() - new Date(birthdate).getFullYear()
+    : null;
+
+  const formattedAdmissionDate = admission_date
+    ? new Date().getFullYear() - new Date(admission_date).getFullYear()
+    : null;
+
   return (
     <ModalWrapper isShowing={naverToggle}>
       <Container>
@@ -36,12 +44,12 @@ const NaverModal: React.FC<IProps> = ({
 
           <InfoItem>
             <h3>Idade</h3>
-            <p>{birthdate}</p>
+            <p>{formattedBirthdate} anos</p>
           </InfoItem>
 
           <InfoItem>
             <h3>Tempo de empresa</h3>
-            <p>{admission_date}</p>
+            <p>{formattedAdmissionDate} anos</p>
           </InfoItem>
 
           <InfoItem>
