@@ -5,6 +5,8 @@ interface IModalContext {
   handleNaverToggle: () => void;
   deleteToggle: boolean;
   handleDeleteToggle: () => void;
+  successToggle: boolean;
+  handleSuccessToggle: () => void;
 }
 
 const ModalContext = createContext({} as IModalContext);
@@ -12,6 +14,7 @@ const ModalContext = createContext({} as IModalContext);
 const ModalContextProvider: React.FC = ({ children }) => {
   const [naverToggle, setNaverToggle] = useState(false);
   const [deleteToggle, setDeleteToggle] = useState(false);
+  const [successToggle, setSuccessToggle] = useState(false);
 
   const handleNaverToggle = useCallback(() => {
     setNaverToggle(prevState => !prevState);
@@ -21,6 +24,10 @@ const ModalContextProvider: React.FC = ({ children }) => {
     setDeleteToggle(prevState => !prevState);
   }, []);
 
+  const handleSuccessToggle = useCallback(() => {
+    setSuccessToggle(prevState => !prevState);
+  }, []);
+
   return (
     <ModalContext.Provider
       value={{
@@ -28,6 +35,8 @@ const ModalContextProvider: React.FC = ({ children }) => {
         handleNaverToggle,
         deleteToggle,
         handleDeleteToggle,
+        successToggle,
+        handleSuccessToggle,
       }}
     >
       {children}
