@@ -8,7 +8,6 @@ import {
   FieldProps,
   ErrorMessage,
 } from 'formik';
-import * as Yup from 'yup';
 
 import { authenticate, ICredentials } from '../../services/api';
 
@@ -16,6 +15,7 @@ import { Field, Button } from '../../components';
 import { Container, Content, Form, Logo, Error, FieldError } from './styles';
 
 import logo from '../../assets/images/logo.png';
+import schema from './validation';
 
 interface ILogin extends ICredentials {
   loginError: string;
@@ -41,15 +41,6 @@ const Login: React.FC = () => {
       });
     }
   };
-
-  const schema = Yup.object().shape({
-    email: Yup.string()
-      .email('Insira um e-mail válido')
-      .required('Email é um campo obrigatório'),
-    password: Yup.string()
-      .min(5, 'Mínimo 6 digitos')
-      .required('Senha é um campo obrigatório'),
-  });
 
   return (
     <Container>
