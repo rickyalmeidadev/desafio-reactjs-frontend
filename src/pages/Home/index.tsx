@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { INaver, index, show } from '../../services/api';
 
 import {
   Header,
@@ -11,9 +13,32 @@ import {
 import { Container, Content, Main, ControlsSection, Grid } from './styles';
 
 const Home: React.FC = () => {
+  const [navers, setNavers] = useState<INaver[]>([]);
+  const [selectedNaver, setSelectedNaver] = useState<INaver>({} as INaver);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await index();
+        setNavers(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
+
+  const handleSelectedNavers = async (id: string) => {
+    try {
+      const response = await show(id);
+      setSelectedNaver(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Container>
-      <NaverModal />
+      <NaverModal {...selectedNaver} />
       <DeleteModal />
       <Content>
         <Header />
@@ -23,14 +48,13 @@ const Home: React.FC = () => {
             <Button type="button">Adicionar Naver</Button>
           </ControlsSection>
           <Grid>
-            <NaverCard />
-            <NaverCard />
-            <NaverCard />
-            <NaverCard />
-            <NaverCard />
-            <NaverCard />
-            <NaverCard />
-            <NaverCard />
+            {navers.map(naver => (
+              <NaverCard
+                key={naver.id}
+                handleSelectedNavers={handleSelectedNavers}
+                {...naver}
+              />
+            ))}
           </Grid>
         </Main>
       </Content>
