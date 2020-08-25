@@ -3,6 +3,7 @@ export { default as Button } from './Button';
 export { default as NaverForm } from './NaverForm';
 export { default as NaverModal } from './NaverModal';
 export { default as DeleteModal } from './DeleteModal';
+export { default as SuccessModal } from './SuccessModal';
 export { default as Header } from './Header';
 export { default as NaverCard } from './NaverCard';
 export { default as ModalWrapper } from './ModalWrapper';

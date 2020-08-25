@@ -9,6 +9,7 @@ import {
   NaverCard,
   NaverModal,
   DeleteModal,
+  SuccessModal,
 } from '../../components';
 
 import { Container, Content, Main, ControlsSection, Grid } from './styles';
@@ -47,6 +48,10 @@ const Home: React.FC = () => {
     <Container>
       <NaverModal {...selectedNaver} />
       <DeleteModal />
+      <SuccessModal
+        title="Naver excluído"
+        message="Naver excluído com sucesso!"
+      />
       <Content>
         <Header />
         <Main>

@@ -5,7 +5,12 @@ import { Container } from './styles';
 import { ModalWrapper, Button } from '..';
 
 const DeleteModal: React.FC = () => {
-  const { deleteToggle, handleDeleteToggle } = useModal();
+  const { deleteToggle, handleDeleteToggle, handleSuccessToggle } = useModal();
+
+  const handleDelete = () => {
+    handleDeleteToggle();
+    handleSuccessToggle();
+  };
 
   return (
     <ModalWrapper isShowing={deleteToggle}>
@@ -17,7 +22,9 @@ const DeleteModal: React.FC = () => {
           <Button noFill type="button" onClick={handleDeleteToggle}>
             Cancelar
           </Button>
-          <Button type="button">Excluir</Button>
+          <Button type="button" onClick={handleDelete}>
+            Excluir
+          </Button>
         </section>
       </Container>
     </ModalWrapper>
