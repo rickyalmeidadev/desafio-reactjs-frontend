@@ -44,6 +44,7 @@
       }
     ],
     "no-shadow": "off",
+    "no-param-reassign": "off",
     "camelcase": "off",
     "prettier/prettier": "error"
   },
