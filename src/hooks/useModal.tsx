@@ -11,7 +11,7 @@ const ModalContext = createContext({} as IModalContext);
 
 const ModalContextProvider: React.FC = ({ children }) => {
   const [naverToggle, setNaverToggle] = useState(false);
-  const [deleteToggle, setDeleteToggle] = useState(true);
+  const [deleteToggle, setDeleteToggle] = useState(false);
 
   const handleNaverToggle = useCallback(() => {
     setNaverToggle(prevState => !prevState);
