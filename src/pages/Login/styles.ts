@@ -19,7 +19,6 @@ export const Content = styled.div`
 `;
 
 export const Form = styled.form`
-  height: 408px;
   width: 100%;
   max-width: 448px;
 
@@ -30,6 +29,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  > button {
+    margin: ${props => props.theme.margins.normal};
+  }
 `;
 
 export const Logo = styled.img`
