@@ -11,8 +11,8 @@ interface IAuthenticate {
 
 export interface INaver {
   name: string;
-  birthdate: string;
-  admission_date: string;
+  birthdate: string | Date;
+  admission_date: string | Date;
   job_role: string;
   user_id: string;
   project: string;
@@ -42,8 +42,10 @@ export const show = async (id: string): Promise<AxiosResponse<INaver>> => {
   return api.get(`/navers/${id}`);
 };
 
-export const create = async (): Promise<AxiosResponse<INaver>> => {
-  return api.post('/navers');
+export const create = async (
+  naver: Omit<INaver, 'id' | 'user_id'>,
+): Promise<AxiosResponse<INaver>> => {
+  return api.post('/navers', naver);
 };
 
 export const update = async (id: string): Promise<AxiosResponse<INaver>> => {
