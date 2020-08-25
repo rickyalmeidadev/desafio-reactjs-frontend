@@ -15,7 +15,7 @@ export default {
   paddings: {
     smaller: '4px',
     small: '8px',
-    normal: '16px',
+    normal: '14px',
     large: '24px',
     larger: '32px',
   },
