@@ -1,12 +1,20 @@
 import React from 'react';
 
-import { Header, Button, NaverCard, NaverModal } from '../../components';
+import {
+  Header,
+  Button,
+  NaverCard,
+  NaverModal,
+  DeleteModal,
+} from '../../components';
+
 import { Container, Content, Main, ControlsSection, Grid } from './styles';
 
 const Home: React.FC = () => {
   return (
     <Container>
       <NaverModal />
+      <DeleteModal />
       <Content>
         <Header />
         <Main>
