@@ -56,5 +56,5 @@ export const Overlay = styled.div<IProps>`
 
   z-index: 10;
 
-  transition: all 200ms ease;
+  transition: ${props => props.theme.transition};
 `;
