@@ -9,3 +9,4 @@ export { default as NaverCard } from './NaverCard';
 export { default as ModalWrapper } from './ModalWrapper';
 export { default as NaverCardSkeleton } from './NaverCardSkeleton';
 export { default as NaverModalSkeleton } from './NaverModalSkeleton';
+export { default as PageLoader } from './PageLoader';
