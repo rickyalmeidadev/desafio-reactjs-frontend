@@ -22,11 +22,17 @@ import {
   NoNavers,
 } from './styles';
 
+import setTitle from '../../utils/title';
+
 const Home: React.FC = () => {
   const { navers, fetchNavers, isLoading } = useNavers();
   const { naverToggle } = useModal();
 
   const history = useHistory();
+
+  useEffect(() => {
+    setTitle('Home');
+  }, []);
 
   useEffect(() => {
     fetchNavers();

@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Header, NaverForm, SuccessModal } from '../../components';
 import { Container, Content, Main, NavigationSection } from './styles';
 
+import setTitle from '../../utils/title';
+
 import { ReactComponent as BackArrow } from '../../assets/icons/arrow-back.svg';
 
 const EditNaver: React.FC = () => {
   const history = useHistory();
+
+  useEffect(() => {
+    setTitle('Editar');
+  }, []);
 
   const handleGoBack = () => {
     history.goBack();
