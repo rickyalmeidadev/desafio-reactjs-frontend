@@ -48,8 +48,11 @@ export const create = async (
   return api.post('/navers', naver);
 };
 
-export const update = async (id: string): Promise<AxiosResponse<INaver>> => {
-  return api.put(`/navers/${id}`);
+export const update = async (
+  id: string,
+  naver: Omit<INaver, 'id' | 'user_id'>,
+): Promise<AxiosResponse<INaver>> => {
+  return api.put(`/navers/${id}`, naver);
 };
 
 export const remove = async (id: string): Promise<AxiosResponse<IRemove>> => {
