@@ -30,7 +30,6 @@ interface IFormValues {
   yearsSinceAdmission: string;
   project: string;
   url: string;
-  addError: string;
 }
 
 interface IParams {
@@ -49,7 +48,6 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
     yearsSinceAdmission: '',
     project: '',
     url: '',
-    addError: '',
   });
 
   const { handleSuccessToggle } = useModal();
@@ -103,7 +101,7 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
 
   const handleSubmit = async (
     values: IFormValues,
-    { setErrors }: FormikHelpers<IFormValues>,
+    { setStatus }: FormikHelpers<IFormValues>,
   ) => {
     try {
       const { name, jobRole, age, yearsSinceAdmission, project, url } = values;
@@ -132,9 +130,7 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
 
       handleSuccessToggle();
     } catch (error) {
-      setErrors({
-        addError: 'Falha ao adicionar Naver',
-      });
+      setStatus('Falha ao adicionar Naver');
     }
   };
 
@@ -145,7 +141,7 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting }: FormikProps<IFormValues>) => (
+      {({ isSubmitting, status }: FormikProps<IFormValues>) => (
         <Form>
           <FormikField name="name">
             {({ field }: FieldProps) => (
@@ -270,7 +266,7 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
             </Loading>
           )}
 
-          <ErrorMessage name="addError" component={SpanError} />
+          {status && <SpanError>{status}</SpanError>}
 
           <Button type="submit">Salvar</Button>
         </Form>

@@ -42,7 +42,7 @@ const NaversContextProvider: React.FC = ({ children }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setTimeout(() => setIsLoading(false), 1000);
+      setTimeout(() => setIsLoading(false), 2000);
     }
   }, []);
 
@@ -56,7 +56,7 @@ const NaversContextProvider: React.FC = ({ children }) => {
       } catch (error) {
         console.error(error);
       } finally {
-        setTimeout(() => setIsLoadingModal(false), 3000);
+        setTimeout(() => setIsLoadingModal(false), 2000);
       }
     },
     [handleNaverToggle],

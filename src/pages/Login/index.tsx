@@ -29,16 +29,12 @@ import {
 import logo from '../../assets/images/logo.png';
 import schema from './validation';
 
-interface ILogin extends ICredentials {
-  loginError: string;
-}
-
 const Login: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = async (
-    values: ILogin,
-    { setErrors, resetForm }: FormikHelpers<ILogin>,
+    values: ICredentials,
+    { setStatus, resetForm }: FormikHelpers<ICredentials>,
   ) => {
     try {
       const { email, password } = values;
@@ -48,9 +44,7 @@ const Login: React.FC = () => {
       resetForm();
       history.push('/');
     } catch (error) {
-      setErrors({
-        loginError: 'Falha ao fazer login',
-      });
+      setStatus('Falha ao fazer login');
     }
   };
 
@@ -61,12 +55,11 @@ const Login: React.FC = () => {
           initialValues={{
             email: '',
             password: '',
-            loginError: '',
           }}
           validationSchema={schema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting }: FormikProps<ILogin>) => (
+          {({ isSubmitting, status }: FormikProps<ICredentials>) => (
             <Form>
               <Logo src={logo} alt="nave.rs" />
               <FormikField
@@ -104,7 +97,7 @@ const Login: React.FC = () => {
                 </Loading>
               )}
 
-              <ErrorMessage name="loginError" component={SpanError} />
+              {status && <SpanError>{status}</SpanError>}
 
               <Button fullWidth type="submit">
                 Entrar
