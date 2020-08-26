@@ -34,7 +34,7 @@ export const Grid = styled.section`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 
   @media (min-width: 450px) {
     display: grid;

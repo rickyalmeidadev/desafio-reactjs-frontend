@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.article`
   max-width: 280px;
+
+  @media (max-width: 450px) {
+    margin-bottom: ${props => props.theme.margins.normal};
+  }
 `;
 
 export const Picture = styled.img`

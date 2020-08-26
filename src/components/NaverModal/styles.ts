@@ -3,18 +3,26 @@ import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg';
 
 export const Container = styled.article`
   position: relative;
-  width: 100%;
-  height: 503px;
   max-width: 1007px;
   max-height: 100vw;
 
-  display: flex;
+  overflow: scroll;
+
+  @media (min-width: 768px) {
+    overflow: auto;
+    width: 100%;
+    display: flex;
+  }
 
   background-color: ${props => props.theme.colors.light};
 `;
 
 export const Picture = styled.img`
-  width: 50%;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const InfoSection = styled.section`

@@ -12,7 +12,15 @@ import {
 import { authenticate, ICredentials } from '../../services/api';
 
 import { Field, Button } from '../../components';
-import { Container, Content, Form, Logo, Error, FieldError } from './styles';
+
+import {
+  Container,
+  Content,
+  Form,
+  Logo,
+  SpanError,
+  FieldError,
+} from './styles';
 
 import logo from '../../assets/images/logo.png';
 import schema from './validation';
@@ -85,7 +93,7 @@ const Login: React.FC = () => {
                   </Field>
                 )}
               />
-              <ErrorMessage name="loginError" component={Error} />
+              <ErrorMessage name="loginError" component={SpanError} />
               <Button fullWidth type="submit">
                 Entrar
               </Button>

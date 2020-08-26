@@ -42,13 +42,13 @@ export const Logo = styled.img`
   margin-bottom: ${props => props.theme.margins.larger};
 `;
 
-export const Error = styled.span`
+export const SpanError = styled.span`
   position: absolute;
   color: #9a1306;
   bottom: 110px;
 `;
 
-export const FieldError = styled(Error)`
+export const FieldError = styled(SpanError)`
   left: 0;
   bottom: -${props => props.theme.margins.normal};
 
