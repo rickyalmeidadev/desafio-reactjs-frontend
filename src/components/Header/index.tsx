@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { Container, Logo, Logout } from './styles';
 
@@ -15,7 +15,9 @@ const Header: React.FC = () => {
 
   return (
     <Container>
-      <Logo src={logo} alt="nave.rs" />
+      <Link to="/">
+        <Logo src={logo} alt="nave.rs" />
+      </Link>
       <Logout type="button" onClick={handleLogout}>
         Sair
       </Logout>
