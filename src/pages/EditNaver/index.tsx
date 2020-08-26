@@ -16,10 +16,11 @@ const EditNaver: React.FC = () => {
   return (
     <Container>
       <SuccessModal
-        title="Naver criado"
-        message="Naver criado com sucesso!"
+        title="Naver atualizado"
+        message="Naver atualizado com sucesso!"
         handleGoBack={handleGoBack}
       />
+
       <Content>
         <Header />
         <Main>
