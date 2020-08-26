@@ -28,6 +28,10 @@ export const api: AxiosInstance = axios.create({
   baseURL: 'https://navedex-api.herokuapp.com/v1',
 });
 
+export const verify = async (): Promise<AxiosResponse> => {
+  return api.get('/');
+};
+
 export const authenticate = async (
   credentials: ICredentials,
 ): Promise<AxiosResponse<IAuthenticate>> => {
