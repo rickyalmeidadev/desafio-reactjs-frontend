@@ -1,12 +1,15 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import GridLoader from 'react-spinners/GridLoader';
+
 import {
   Formik,
   FormikHelpers,
   Field as FormikField,
   FieldProps,
   ErrorMessage,
+  FormikProps,
 } from 'formik';
 
 import { authenticate, ICredentials } from '../../services/api';
@@ -20,6 +23,7 @@ import {
   Logo,
   SpanError,
   FieldError,
+  Loading,
 } from './styles';
 
 import logo from '../../assets/images/logo.png';
@@ -62,7 +66,7 @@ const Login: React.FC = () => {
           validationSchema={schema}
           onSubmit={handleSubmit}
         >
-          {() => (
+          {({ isSubmitting }: FormikProps<ILogin>) => (
             <Form>
               <Logo src={logo} alt="nave.rs" />
               <FormikField
@@ -93,7 +97,15 @@ const Login: React.FC = () => {
                   </Field>
                 )}
               />
+
+              {isSubmitting && (
+                <Loading>
+                  <GridLoader size={2} />
+                </Loading>
+              )}
+
               <ErrorMessage name="loginError" component={SpanError} />
+
               <Button fullWidth type="submit">
                 Entrar
               </Button>

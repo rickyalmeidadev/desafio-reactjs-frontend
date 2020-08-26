@@ -36,3 +36,15 @@ export const FieldError = styled(SpanError)`
 
   font-size: 1.2rem;
 `;
+
+export const Loading = styled.span`
+  position: absolute;
+  bottom: ${props => props.theme.margins.normal};
+  right: 200px;
+`;
+
+export const FieldLoading = styled.span`
+  position: absolute;
+  bottom: ${props => props.theme.margins.normal};
+  right: ${props => props.theme.margins.normal};
+`;

@@ -9,6 +9,8 @@ interface INaversContext {
   handleSelectNaver: (id: string) => Promise<void>;
   selectedNaverId: string;
   handleSelectNaverId: (id: string) => void;
+  isLoading: boolean;
+  handleLoading: () => void;
   handleDeleteNaver: (id: string) => Promise<void>;
 }
 
@@ -18,12 +20,17 @@ const NaversContextProvider: React.FC = ({ children }) => {
   const [navers, setNavers] = useState<INaver[]>([]);
   const [selectedNaver, setSelectedNaver] = useState<INaver>({} as INaver);
   const [selectedNaverId, setSelectedNaverId] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     handleNaverToggle,
     handleDeleteToggle,
     handleSuccessToggle,
   } = useModal();
+
+  const handleLoading = useCallback(() => {
+    setIsLoading(prevState => !prevState);
+  }, []);
 
   const fetchNavers = useCallback(async () => {
     try {
@@ -54,6 +61,7 @@ const NaversContextProvider: React.FC = ({ children }) => {
   const handleDeleteNaver = useCallback(
     async (id: string) => {
       try {
+        setIsLoading(true);
         await remove(id);
         handleDeleteToggle();
         handleSuccessToggle();
@@ -63,6 +71,8 @@ const NaversContextProvider: React.FC = ({ children }) => {
         setNavers(navers.filter(naver => naver.id !== id));
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     },
     [handleDeleteToggle, handleSuccessToggle, navers],
@@ -77,6 +87,8 @@ const NaversContextProvider: React.FC = ({ children }) => {
         handleSelectNaver,
         selectedNaverId,
         handleSelectNaverId,
+        isLoading,
+        handleLoading,
         handleDeleteNaver,
       }}
     >

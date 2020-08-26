@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
+import GridLoader from 'react-spinners/GridLoader';
+
 import {
   Formik,
   FormikHelpers,
   Field as FormikField,
   FieldProps,
   ErrorMessage,
+  FormikProps,
 } from 'formik';
 
 import moment from 'moment';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal';
 
 import { Field, Button } from '..';
-import { Form, FieldError, SpanError } from './styles';
+import { Form, FieldError, SpanError, Loading, FieldLoading } from './styles';
 
 import schema from './validation';
 import { create, show, update } from '../../services/api';
+import { useNavers } from '../../hooks/useNavers';
 
 interface IFormValues {
   name: string;
@@ -49,13 +53,17 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
   });
 
   const { handleSuccessToggle } = useModal();
+  const { isLoading, handleLoading } = useNavers();
 
+  const history = useHistory();
   const { id } = useParams() as IParams;
 
   useEffect(() => {
     if (id) {
       (async () => {
         try {
+          handleLoading();
+
           const response = await show(id);
 
           const {
@@ -85,7 +93,9 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
             jobRole: job_role,
           }));
         } catch (error) {
-          console.error(error);
+          history.push('/');
+        } finally {
+          handleLoading();
         }
       })();
     }
@@ -122,8 +132,6 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
 
       handleSuccessToggle();
     } catch (error) {
-      console.error(error);
-
       setErrors({
         addError: 'Falha ao adicionar Naver',
       });
@@ -137,7 +145,7 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      {() => (
+      {({ isSubmitting }: FormikProps<IFormValues>) => (
         <Form>
           <FormikField name="name">
             {({ field }: FieldProps) => (
@@ -148,7 +156,14 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
                 name="name"
                 placeholder="Nome"
               >
-                <ErrorMessage name="name" component={FieldError} />
+                <>
+                  <ErrorMessage name="name" component={FieldError} />
+                  {isLoading && (
+                    <FieldLoading>
+                      <GridLoader size={2} />
+                    </FieldLoading>
+                  )}
+                </>
               </Field>
             )}
           </FormikField>
@@ -161,7 +176,14 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
                 name="jobRole"
                 placeholder="Cargo"
               >
-                <ErrorMessage name="jobRole" component={FieldError} />
+                <>
+                  <ErrorMessage name="jobRole" component={FieldError} />
+                  {isLoading && (
+                    <FieldLoading>
+                      <GridLoader size={2} />
+                    </FieldLoading>
+                  )}
+                </>
               </Field>
             )}
           </FormikField>
@@ -174,7 +196,14 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
                 name="age"
                 placeholder="Idade"
               >
-                <ErrorMessage name="age" component={FieldError} />
+                <>
+                  <ErrorMessage name="age" component={FieldError} />
+                  {isLoading && (
+                    <FieldLoading>
+                      <GridLoader size={2} />
+                    </FieldLoading>
+                  )}
+                </>
               </Field>
             )}
           </FormikField>
@@ -203,7 +232,14 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
                 name="project"
                 placeholder="Projetos que participou"
               >
-                <ErrorMessage name="project" component={FieldError} />
+                <>
+                  <ErrorMessage name="project" component={FieldError} />
+                  {isLoading && (
+                    <FieldLoading>
+                      <GridLoader size={2} />
+                    </FieldLoading>
+                  )}
+                </>
               </Field>
             )}
           </FormikField>
@@ -216,11 +252,26 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
                 name="url"
                 placeholder="URL da foto do Naver"
               >
-                <ErrorMessage name="url" component={FieldError} />
+                <>
+                  <ErrorMessage name="url" component={FieldError} />
+                  {isLoading && (
+                    <FieldLoading>
+                      <GridLoader size={2} />
+                    </FieldLoading>
+                  )}
+                </>
               </Field>
             )}
           </FormikField>
+
+          {isSubmitting && (
+            <Loading>
+              <GridLoader size={2} />
+            </Loading>
+          )}
+
           <ErrorMessage name="addError" component={SpanError} />
+
           <Button type="submit">Salvar</Button>
         </Form>
       )}

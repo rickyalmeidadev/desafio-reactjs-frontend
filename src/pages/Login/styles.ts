@@ -54,3 +54,8 @@ export const FieldError = styled(SpanError)`
 
   font-size: 1.2rem;
 `;
+
+export const Loading = styled.span`
+  position: absolute;
+  bottom: 110px;
+`;

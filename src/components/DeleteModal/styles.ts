@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.article`
+  position: relative;
+
   width: 100%;
   max-width: 592px;
 
@@ -35,9 +37,9 @@ export const Container = styled.article`
     text-align: center;
 
     > section {
-    display: flex;
-    justify-content: center;
-
+      display: flex;
+      justify-content: center;
+    }
   }
 
   @media (max-width: 450px) {
@@ -57,4 +59,10 @@ export const Container = styled.article`
       }
     }
   }
+`;
+
+export const Loading = styled.span`
+  position: absolute;
+  right: ${props => props.theme.paddings.normal};
+  top: ${props => props.theme.paddings.normal};
 `;
