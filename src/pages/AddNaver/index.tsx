@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Header, NaverForm } from '../../components';
+import { Header, NaverForm, SuccessModal } from '../../components';
 import { Container, Content, Main, NavigationSection } from './styles';
 
 import { ReactComponent as BackArrow } from '../../assets/icons/arrow-back.svg';
@@ -15,6 +15,11 @@ const AddNaver: React.FC = () => {
 
   return (
     <Container>
+      <SuccessModal
+        title="Naver criado"
+        message="Naver criado com sucesso!"
+        handleGoBack={handleGoBack}
+      />
       <Content>
         <Header />
         <Main>

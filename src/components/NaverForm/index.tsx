@@ -10,9 +10,11 @@ import {
 
 import moment from 'moment';
 
-import { useHistory } from 'react-router-dom';
-import { Form, FieldError, SpanError } from './styles';
+import { useModal } from '../../hooks/useModal';
+
 import { Field, Button } from '..';
+import { Form, FieldError, SpanError } from './styles';
+
 import schema from './validation';
 import { create } from '../../services/api';
 
@@ -27,7 +29,7 @@ interface IFormValues {
 }
 
 const NaverForm: React.FC = () => {
-  const history = useHistory();
+  const { handleSuccessToggle } = useModal();
 
   const handleSubmit = async (
     values: IFormValues,
@@ -52,8 +54,8 @@ const NaverForm: React.FC = () => {
         admission_date: moment(admissionDate).format('DD/MM/YYYY'),
       });
 
+      handleSuccessToggle();
       resetForm();
-      history.push('/');
     } catch (error) {
       console.error(error);
 
