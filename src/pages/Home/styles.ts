@@ -54,3 +54,13 @@ export const Grid = styled.section`
     gap: ${props => props.theme.margins.larger};
   }
 `;
+
+export const NoNavers = styled.span`
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: ${props => props.theme.margins.larger};
+`;

@@ -13,10 +13,17 @@ import {
   SuccessModal,
 } from '../../components';
 
-import { Container, Content, Main, ControlsSection, Grid } from './styles';
+import {
+  Container,
+  Content,
+  Main,
+  ControlsSection,
+  Grid,
+  NoNavers,
+} from './styles';
 
 const Home: React.FC = () => {
-  const { navers, fetchNavers } = useNavers();
+  const { navers, fetchNavers, isLoading } = useNavers();
   const { naverToggle } = useModal();
 
   const history = useHistory();
@@ -54,11 +61,15 @@ const Home: React.FC = () => {
               Adicionar Naver
             </Button>
           </ControlsSection>
-          <Grid>
-            {navers.map(naver => (
-              <NaverCard key={naver.id} {...naver} />
-            ))}
-          </Grid>
+          {!navers.length && !isLoading ? (
+            <NoNavers>Sem navers por enquanto...</NoNavers>
+          ) : (
+            <Grid>
+              {navers.map(naver => (
+                <NaverCard key={naver.id} {...naver} />
+              ))}
+            </Grid>
+          )}
         </Main>
       </Content>
     </Container>
