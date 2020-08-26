@@ -16,8 +16,8 @@ const AddNaver: React.FC = () => {
   return (
     <Container>
       <SuccessModal
-        title="Naver criado"
-        message="Naver criado com sucesso!"
+        title="Naver atualizado"
+        message="Naver atualizado com sucesso!"
         handleGoBack={handleGoBack}
       />
       <Content>
@@ -28,7 +28,7 @@ const AddNaver: React.FC = () => {
             <h1>Adicionar Naver</h1>
           </NavigationSection>
 
-          <NaverForm />
+          <NaverForm method="POST" />
         </Main>
       </Content>
     </Container>

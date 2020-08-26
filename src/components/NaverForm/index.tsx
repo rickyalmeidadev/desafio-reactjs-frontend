@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Formik,
@@ -10,13 +10,14 @@ import {
 
 import moment from 'moment';
 
+import { useParams } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal';
 
 import { Field, Button } from '..';
 import { Form, FieldError, SpanError } from './styles';
 
 import schema from './validation';
-import { create } from '../../services/api';
+import { create, show, update } from '../../services/api';
 
 interface IFormValues {
   name: string;
@@ -28,12 +29,71 @@ interface IFormValues {
   addError: string;
 }
 
-const NaverForm: React.FC = () => {
+interface IParams {
+  id: string;
+}
+
+interface IProps {
+  method: 'PUT' | 'POST';
+}
+
+const NaverForm: React.FC<IProps> = ({ method }) => {
+  const [formValues, setFormValues] = useState({
+    name: '',
+    jobRole: '',
+    age: '',
+    yearsSinceAdmission: '',
+    project: '',
+    url: '',
+    addError: '',
+  });
+
   const { handleSuccessToggle } = useModal();
+
+  const { id } = useParams() as IParams;
+
+  useEffect(() => {
+    if (id) {
+      (async () => {
+        try {
+          const response = await show(id);
+
+          const {
+            name,
+            job_role,
+            project,
+            url,
+            birthdate,
+            admission_date,
+          } = response.data;
+
+          const age = String(
+            new Date().getFullYear() - new Date(birthdate).getFullYear(),
+          );
+
+          const yearsSinceAdmission = String(
+            new Date().getFullYear() - new Date(admission_date).getFullYear(),
+          );
+
+          setFormValues(prevState => ({
+            ...prevState,
+            name,
+            project,
+            url,
+            age,
+            yearsSinceAdmission,
+            jobRole: job_role,
+          }));
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+    }
+  }, [id]);
 
   const handleSubmit = async (
     values: IFormValues,
-    { setErrors, resetForm }: FormikHelpers<IFormValues>,
+    { setErrors }: FormikHelpers<IFormValues>,
   ) => {
     try {
       const { name, jobRole, age, yearsSinceAdmission, project, url } = values;
@@ -45,17 +105,22 @@ const NaverForm: React.FC = () => {
         currentYear - Number(yearsSinceAdmission),
       );
 
-      await create({
+      const data = {
         name,
         project,
         url,
         job_role: jobRole,
         birthdate: moment(birthdate).format('DD/MM/YYYY'),
         admission_date: moment(admissionDate).format('DD/MM/YYYY'),
-      });
+      };
+
+      if (method === 'POST') {
+        await create(data);
+      } else {
+        await update(id, data);
+      }
 
       handleSuccessToggle();
-      resetForm();
     } catch (error) {
       console.error(error);
 
@@ -67,15 +132,8 @@ const NaverForm: React.FC = () => {
 
   return (
     <Formik
-      initialValues={{
-        name: '',
-        jobRole: '',
-        age: '',
-        yearsSinceAdmission: '',
-        project: '',
-        url: '',
-        addError: '',
-      }}
+      initialValues={formValues}
+      enableReinitialize
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
