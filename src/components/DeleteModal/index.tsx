@@ -12,7 +12,6 @@ const DeleteModal: React.FC = () => {
   const { deleteToggle, handleDeleteToggle } = useModal();
   const { selectedNaverId, handleDeleteNaver, isLoading } = useNavers();
 
-  console.log(isLoading);
   return (
     <ModalWrapper isShowing={deleteToggle}>
       <Container>

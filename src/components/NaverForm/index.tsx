@@ -99,7 +99,7 @@ const NaverForm: React.FC<IProps> = ({ method }) => {
         }
       })();
     }
-  }, [id]);
+  }, [id, handleLoading, history]);
 
   const handleSubmit = async (
     values: IFormValues,
