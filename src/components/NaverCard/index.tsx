@@ -10,7 +10,7 @@ import { ReactComponent as Pencil } from '../../assets/icons/pencil.svg';
 import { NaverCardSkeleton } from '..';
 import { Container, Picture, Name, Role, Icons } from './styles';
 
-import picture from '../../assets/images/naver-example.png';
+import imagePlaceholder from '../../assets/images/image-placeholder.png';
 
 interface IProps {
   id: string;
@@ -26,7 +26,7 @@ const NaverCard: React.FC<IProps> = ({ id, url, name, job_role }) => {
   const history = useHistory();
 
   const handleBrokenImg = (event: SyntheticEvent<HTMLImageElement, Event>) => {
-    event.currentTarget.src = picture;
+    event.currentTarget.src = imagePlaceholder;
   };
 
   const handleAskToConfirm = () => {
