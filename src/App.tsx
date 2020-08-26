@@ -7,13 +7,16 @@ import theme from './assets/styles/theme';
 import { ModalContextProvider } from './hooks/useModal';
 
 import Routes from './routes';
+import { NaversContextProvider } from './hooks/useNavers';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <ModalContextProvider>
-        <GlobalStyles />
-        <Routes />
+        <NaversContextProvider>
+          <GlobalStyles />
+          <Routes />
+        </NaversContextProvider>
       </ModalContextProvider>
     </ThemeProvider>
   );
