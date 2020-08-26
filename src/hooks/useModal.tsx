@@ -48,7 +48,7 @@ const useModal = (): IModalContext => {
   const context = useContext(ModalContext);
 
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useModal must be used within an AuthProvider');
   }
 
   return context;
