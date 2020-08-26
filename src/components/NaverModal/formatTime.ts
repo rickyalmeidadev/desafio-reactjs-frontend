@@ -34,6 +34,10 @@ export const formatAdmissionDate = (date: string): string => {
     return `${years} e ${months}`;
   }
 
+  if (!years && !months) {
+    return 'Menos de um mês';
+  }
+
   return years + months;
 };
 
