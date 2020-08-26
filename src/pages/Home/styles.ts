@@ -27,6 +27,16 @@ export const ControlsSection = styled.section`
     font-size: 4rem;
     font-weight: 600;
   }
+
+  @media (max-width: 370px) {
+    > h1 {
+      display: none;
+    }
+
+    > button {
+      margin: auto;
+    }
+  }
 `;
 
 export const Grid = styled.section`
