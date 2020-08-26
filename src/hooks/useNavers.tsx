@@ -11,6 +11,7 @@ interface INaversContext {
   handleSelectNaverId: (id: string) => void;
   isLoading: boolean;
   handleLoading: () => void;
+  isLoadingModal: boolean;
   handleDeleteNaver: (id: string) => Promise<void>;
 }
 
@@ -21,6 +22,7 @@ const NaversContextProvider: React.FC = ({ children }) => {
   const [selectedNaver, setSelectedNaver] = useState<INaver>({} as INaver);
   const [selectedNaverId, setSelectedNaverId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingModal, setIsLoadingModal] = useState(false);
 
   const {
     handleNaverToggle,
@@ -34,21 +36,27 @@ const NaversContextProvider: React.FC = ({ children }) => {
 
   const fetchNavers = useCallback(async () => {
     try {
+      setIsLoading(true);
       const response = await index();
       setNavers(response.data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setTimeout(() => setIsLoading(false), 1000);
     }
   }, []);
 
   const handleSelectNaver = useCallback(
     async (id: string) => {
       try {
+        setIsLoadingModal(true);
         handleNaverToggle();
         const response = await show(id);
         setSelectedNaver(response.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setTimeout(() => setIsLoadingModal(false), 3000);
       }
     },
     [handleNaverToggle],
@@ -65,8 +73,6 @@ const NaversContextProvider: React.FC = ({ children }) => {
         await remove(id);
         handleDeleteToggle();
         handleSuccessToggle();
-
-        console.log(id);
 
         setNavers(navers.filter(naver => naver.id !== id));
       } catch (error) {
@@ -89,6 +95,7 @@ const NaversContextProvider: React.FC = ({ children }) => {
         handleSelectNaverId,
         isLoading,
         handleLoading,
+        isLoadingModal,
         handleDeleteNaver,
       }}
     >
