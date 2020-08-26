@@ -1,36 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import GridLoader from 'react-spinners/GridLoader';
 
-import {
-  Formik,
-  FormikHelpers,
-  Field as FormikField,
-  FieldProps,
-  ErrorMessage,
-  FormikProps,
-} from 'formik';
+import { Formik, FormikHelpers, FormikProps } from 'formik';
 
 import { authenticate, ICredentials } from '../../services/api';
 
 import { Field, Button } from '../../components';
 
-import {
-  Container,
-  Content,
-  Form,
-  Logo,
-  SpanError,
-  FieldError,
-  Loading,
-} from './styles';
+import { Container, Content, Form, Logo, SpanError, Loading } from './styles';
+
+import schema from './validation';
+
+import setTitle from '../../utils/title';
 
 import logo from '../../assets/images/logo.png';
-import schema from './validation';
 
 const Login: React.FC = () => {
   const history = useHistory();
+
+  useEffect(() => {
+    setTitle('Login');
+  }, []);
 
   const handleSubmit = async (
     values: ICredentials,
@@ -62,34 +54,8 @@ const Login: React.FC = () => {
           {({ isSubmitting, status }: FormikProps<ICredentials>) => (
             <Form>
               <Logo src={logo} alt="nave.rs" />
-              <FormikField
-                name="email"
-                render={({ field }: FieldProps) => (
-                  <Field
-                    {...field}
-                    type="text"
-                    label="E-mail"
-                    name="email"
-                    placeholder="E-mail"
-                  >
-                    <ErrorMessage name="email" component={FieldError} />
-                  </Field>
-                )}
-              />
-              <FormikField
-                name="password"
-                render={({ field }: FieldProps) => (
-                  <Field
-                    {...field}
-                    type="password"
-                    label="Senha"
-                    name="password"
-                    placeholder="Senha"
-                  >
-                    <ErrorMessage name="password" component={FieldError} />
-                  </Field>
-                )}
-              />
+              <Field name="email" label="E-mail" />
+              <Field type="password" name="password" label="Senha" />
 
               {isSubmitting && (
                 <Loading>

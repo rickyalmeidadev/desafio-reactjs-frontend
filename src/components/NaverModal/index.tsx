@@ -6,7 +6,9 @@ import { useNavers } from '../../hooks/useNavers';
 import { ModalWrapper, NaverModalSkeleton } from '..';
 import { Container, Picture, InfoSection, InfoItem, Close } from './styles';
 
-import picture from '../../assets/images/naver-example.png';
+import imagePlaceholder from '../../assets/images/image-placeholder.png';
+
+import { formatBirthdate, formatAdmissionDate } from './formatTime';
 
 const NaverModal: React.FC = () => {
   const { naverToggle, handleNaverToggle } = useModal();
@@ -17,16 +19,11 @@ const NaverModal: React.FC = () => {
   } = useNavers();
 
   const handleBrokenImg = (event: SyntheticEvent<HTMLImageElement, Event>) => {
-    event.currentTarget.src = picture;
+    event.currentTarget.src = imagePlaceholder;
   };
 
-  const formattedBirthdate = birthdate
-    ? new Date().getFullYear() - new Date(birthdate).getFullYear()
-    : null;
-
-  const formattedAdmissionDate = admission_date
-    ? new Date().getFullYear() - new Date(admission_date).getFullYear()
-    : null;
+  const formattedBirthdate = formatBirthdate(birthdate);
+  const formattedAdmissionDate = formatAdmissionDate(admission_date);
 
   return (
     <ModalWrapper isShowing={naverToggle}>
@@ -43,12 +40,12 @@ const NaverModal: React.FC = () => {
 
               <InfoItem>
                 <h3>Idade</h3>
-                <p>{formattedBirthdate} anos</p>
+                <p>{formattedBirthdate}</p>
               </InfoItem>
 
               <InfoItem>
                 <h3>Tempo de empresa</h3>
-                <p>{formattedAdmissionDate} anos</p>
+                <p>{formattedAdmissionDate}</p>
               </InfoItem>
 
               <InfoItem>

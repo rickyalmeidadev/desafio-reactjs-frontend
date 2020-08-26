@@ -11,8 +11,8 @@ interface IAuthenticate {
 
 export interface INaver {
   name: string;
-  birthdate: string | Date;
-  admission_date: string | Date;
+  birthdate: string;
+  admission_date: string;
   job_role: string;
   user_id: string;
   project: string;

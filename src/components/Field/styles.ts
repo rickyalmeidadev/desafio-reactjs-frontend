@@ -31,3 +31,25 @@ export const Input = styled.input`
     color: ${props => props.theme.colors.gray};
   }
 `;
+
+export const FieldError = styled.span`
+  position: absolute;
+  color: #9a1306;
+  left: 0;
+  right: 0;
+  bottom: -${props => props.theme.margins.normal};
+
+  font-size: 1.2rem;
+`;
+
+export const Loading = styled.span`
+  position: absolute;
+  bottom: ${props => props.theme.margins.normal};
+  right: 200px;
+`;
+
+export const FieldLoading = styled.span`
+  position: absolute;
+  bottom: ${props => props.theme.margins.normal};
+  right: ${props => props.theme.margins.normal};
+`;

@@ -29,22 +29,8 @@ export const SpanError = styled.span`
   right: 200px;
 `;
 
-export const FieldError = styled(SpanError)`
-  left: 0;
-  right: 0;
-  bottom: -${props => props.theme.margins.normal};
-
-  font-size: 1.2rem;
-`;
-
 export const Loading = styled.span`
   position: absolute;
   bottom: ${props => props.theme.margins.normal};
   right: 200px;
-`;
-
-export const FieldLoading = styled.span`
-  position: absolute;
-  bottom: ${props => props.theme.margins.normal};
-  right: ${props => props.theme.margins.normal};
 `;

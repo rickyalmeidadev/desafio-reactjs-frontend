@@ -1,18 +1,35 @@
 import React, { InputHTMLAttributes } from 'react';
 
-import { Wrapper, Label, Input } from './styles';
+import { FieldProps, ErrorMessage, Field as FormikField } from 'formik';
+import GridLoader from 'react-spinners/GridLoader';
+
+import { Wrapper, Label, Input, FieldError, FieldLoading } from './styles';
+import { useNavers } from '../../hooks/useNavers';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
 }
 
-const Field: React.FC<IProps> = ({ label, name, children, ...rest }) => {
+const Field: React.FC<IProps> = ({ label, name, ...rest }) => {
+  const { isLoading } = useNavers();
+
   return (
     <Wrapper>
-      <Label htmlFor={name}>{label}</Label>
-      <Input {...rest} name={name} id={name} />
-      {children}
+      <FormikField name={name}>
+        {({ field }: FieldProps) => (
+          <>
+            <Label htmlFor={name}>{label}</Label>
+            <Input {...rest} {...field} name={name} id={name} />
+            <ErrorMessage name={name} component={FieldError} />
+            {isLoading && (
+              <FieldLoading>
+                <GridLoader size={2} />
+              </FieldLoading>
+            )}
+          </>
+        )}
+      </FormikField>
     </Wrapper>
   );
 };

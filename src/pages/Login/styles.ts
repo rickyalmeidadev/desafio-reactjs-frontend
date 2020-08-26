@@ -48,13 +48,6 @@ export const SpanError = styled.span`
   bottom: 110px;
 `;
 
-export const FieldError = styled(SpanError)`
-  left: 0;
-  bottom: -${props => props.theme.margins.normal};
-
-  font-size: 1.2rem;
-`;
-
 export const Loading = styled.span`
   position: absolute;
   bottom: 110px;
