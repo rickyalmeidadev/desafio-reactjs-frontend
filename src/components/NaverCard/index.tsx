@@ -1,8 +1,8 @@
 import React, { SyntheticEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useModal } from '../../hooks/useModal';
 
-import { INaver } from '../../services/api';
+import { useModal } from '../../hooks/useModal';
+import { useNavers } from '../../hooks/useNavers';
 
 import { ReactComponent as Trash } from '../../assets/icons/trash.svg';
 import { ReactComponent as Pencil } from '../../assets/icons/pencil.svg';
@@ -11,18 +11,16 @@ import { Container, Picture, Name, Role, Icons } from './styles';
 
 import picture from '../../assets/images/naver-example.png';
 
-interface IProps extends INaver {
-  handleSelectedNavers: (id: string) => void;
+interface IProps {
+  id: string;
+  url: string;
+  name: string;
+  job_role: string;
 }
 
-const NaverCard: React.FC<IProps> = ({
-  id,
-  url,
-  name,
-  job_role,
-  handleSelectedNavers,
-}) => {
-  const { handleNaverToggle, handleDeleteToggle } = useModal();
+const NaverCard: React.FC<IProps> = ({ id, url, name, job_role }) => {
+  const { handleDeleteToggle } = useModal();
+  const { handleSelectNaver, handleSelectNaverId } = useNavers();
 
   const history = useHistory();
 
@@ -30,9 +28,9 @@ const NaverCard: React.FC<IProps> = ({
     event.currentTarget.src = picture;
   };
 
-  const handleNaver = () => {
-    handleSelectedNavers(id);
-    handleNaverToggle();
+  const handleAskToConfirm = () => {
+    handleSelectNaverId(id);
+    handleDeleteToggle();
   };
 
   const handleNavigateToEdit = () => {
@@ -45,12 +43,12 @@ const NaverCard: React.FC<IProps> = ({
         onError={handleBrokenImg}
         src={url}
         alt={url}
-        onClick={handleNaver}
+        onClick={() => handleSelectNaver(id)}
       />
-      <Name onClick={handleNaver}>{name}</Name>
+      <Name onClick={() => handleSelectNaver(id)}>{name}</Name>
       <Role>{job_role}</Role>
       <Icons>
-        <Trash onClick={handleDeleteToggle} />
+        <Trash onClick={handleAskToConfirm} />
         <Pencil onClick={handleNavigateToEdit} />
       </Icons>
     </Container>

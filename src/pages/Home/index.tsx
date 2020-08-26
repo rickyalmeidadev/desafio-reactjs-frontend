@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { INaver, index, show } from '../../services/api';
+import { useNavers } from '../../hooks/useNavers';
 
 import {
   Header,
@@ -15,30 +14,13 @@ import {
 import { Container, Content, Main, ControlsSection, Grid } from './styles';
 
 const Home: React.FC = () => {
-  const [navers, setNavers] = useState<INaver[]>([]);
-  const [selectedNaver, setSelectedNaver] = useState<INaver>({} as INaver);
+  const { navers, fetchNavers } = useNavers();
 
   const history = useHistory();
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await index();
-        setNavers(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
-
-  const handleSelectedNavers = async (id: string) => {
-    try {
-      const response = await show(id);
-      setSelectedNaver(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    fetchNavers();
+  }, [fetchNavers]);
 
   const handleNavigateToAdd = () => {
     history.push('/add');
@@ -46,7 +28,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <NaverModal {...selectedNaver} />
+      <NaverModal />
       <DeleteModal />
       <SuccessModal
         title="Naver excluído"
@@ -63,11 +45,7 @@ const Home: React.FC = () => {
           </ControlsSection>
           <Grid>
             {navers.map(naver => (
-              <NaverCard
-                key={naver.id}
-                handleSelectedNavers={handleSelectedNavers}
-                {...naver}
-              />
+              <NaverCard key={naver.id} {...naver} />
             ))}
           </Grid>
         </Main>

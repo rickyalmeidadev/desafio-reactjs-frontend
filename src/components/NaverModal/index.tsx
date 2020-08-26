@@ -1,25 +1,19 @@
 import React, { SyntheticEvent } from 'react';
 
-import { INaver } from '../../services/api';
+import { useModal } from '../../hooks/useModal';
+import { useNavers } from '../../hooks/useNavers';
 
 import { ModalWrapper } from '..';
 import { Container, Picture, InfoSection, InfoItem, Close } from './styles';
 
-import { useModal } from '../../hooks/useModal';
-
 import picture from '../../assets/images/naver-example.png';
 
-type IProps = INaver;
-
-const NaverModal: React.FC<IProps> = ({
-  name,
-  url,
-  job_role,
-  birthdate,
-  admission_date,
-  project,
-}) => {
+const NaverModal: React.FC = () => {
   const { naverToggle, handleNaverToggle } = useModal();
+
+  const {
+    selectedNaver: { name, url, job_role, birthdate, admission_date, project },
+  } = useNavers();
 
   const handleBrokenImg = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = picture;

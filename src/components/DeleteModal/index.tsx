@@ -1,16 +1,14 @@
 import React from 'react';
-import { useModal } from '../../hooks/useModal';
 
-import { Container } from './styles';
+import { useModal } from '../../hooks/useModal';
+import { useNavers } from '../../hooks/useNavers';
+
 import { ModalWrapper, Button } from '..';
+import { Container } from './styles';
 
 const DeleteModal: React.FC = () => {
-  const { deleteToggle, handleDeleteToggle, handleSuccessToggle } = useModal();
-
-  const handleDelete = () => {
-    handleDeleteToggle();
-    handleSuccessToggle();
-  };
+  const { deleteToggle, handleDeleteToggle } = useModal();
+  const { selectedNaverId, handleDeleteNaver } = useNavers();
 
   return (
     <ModalWrapper isShowing={deleteToggle}>
@@ -22,7 +20,10 @@ const DeleteModal: React.FC = () => {
           <Button noFill type="button" onClick={handleDeleteToggle}>
             Cancelar
           </Button>
-          <Button type="button" onClick={handleDelete}>
+          <Button
+            type="button"
+            onClick={() => handleDeleteNaver(selectedNaverId)}
+          >
             Excluir
           </Button>
         </section>
