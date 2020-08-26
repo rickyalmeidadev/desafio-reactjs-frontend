@@ -25,7 +25,7 @@ import {
 import setTitle from '../../utils/title';
 
 const Home: React.FC = () => {
-  const { navers, fetchNavers, isLoading } = useNavers();
+  const { navers, fetchNavers, hasNavers } = useNavers();
   const { naverToggle } = useModal();
 
   const history = useHistory();
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
               Adicionar Naver
             </Button>
           </ControlsSection>
-          {!navers.length && !isLoading ? (
+          {!hasNavers ? (
             <NoNavers>Sem navers por enquanto...</NoNavers>
           ) : (
             <Grid>

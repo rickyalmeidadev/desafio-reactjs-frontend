@@ -6,17 +6,17 @@ import { Formik, FormikHelpers, FormikProps } from 'formik';
 
 import moment from 'moment';
 
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal';
 
 import { Field, Button } from '..';
 import { Form, SpanError, Loading } from './styles';
 
 import schema from './validation';
-import { show, create, update } from '../../services/api';
+import { create, update } from '../../services/api';
 import { useNavers } from '../../hooks/useNavers';
 
-interface IFormValues {
+export interface IFormValues {
   name: string;
   jobRole: string;
   birthdate: string;
@@ -34,55 +34,18 @@ interface IProps {
 }
 
 const NaverForm: React.FC<IProps> = ({ method }) => {
-  const [formValues, setFormValues] = useState({
-    name: '',
-    jobRole: '',
-    birthdate: '',
-    admissionDate: '',
-    project: '',
-    url: '',
-  });
-
   const { handleSuccessToggle } = useModal();
-  const { handleLoading } = useNavers();
+  const { fetchNaversDataForFields, formValues, clearForm } = useNavers();
 
-  const history = useHistory();
   const { id } = useParams() as IParams;
 
   useEffect(() => {
     if (id) {
-      (async () => {
-        try {
-          handleLoading();
-
-          const response = await show(id);
-
-          const {
-            name,
-            job_role,
-            project,
-            url,
-            birthdate,
-            admission_date,
-          } = response.data;
-
-          setFormValues(prevState => ({
-            ...prevState,
-            name,
-            project,
-            url,
-            birthdate: moment(birthdate).format('YYYY-MM-DD'),
-            admissionDate: moment(admission_date).format('YYYY-MM-DD'),
-            jobRole: job_role,
-          }));
-        } catch (error) {
-          history.push('/');
-        } finally {
-          handleLoading();
-        }
-      })();
+      fetchNaversDataForFields(id);
     }
-  }, [id, handleLoading, history]);
+
+    return () => clearForm();
+  }, [id, fetchNaversDataForFields, clearForm]);
 
   const handleSubmit = async (
     values: IFormValues,
