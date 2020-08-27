@@ -8,10 +8,6 @@ export const formatAdmissionDate = (date: string): string => {
 
   let years = '';
 
-  if (companyYears === 0) {
-    years = '';
-  }
-
   if (companyYears === 1) {
     years = '1 ano';
   }
@@ -21,10 +17,6 @@ export const formatAdmissionDate = (date: string): string => {
   }
 
   let months = '';
-
-  if (companyMonths === 0) {
-    months = '';
-  }
 
   if (companyMonths > 0) {
     months = `${companyMonths} meses`;
