@@ -25,10 +25,11 @@ export const Container = styled.article`
 
   > section {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
 
     > button + button {
-      margin-left: ${props => props.theme.margins.large};
+      margin-right: ${props => props.theme.margins.large};
     }
   }
 

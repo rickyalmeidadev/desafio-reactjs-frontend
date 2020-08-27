@@ -25,14 +25,14 @@ const DeleteModal: React.FC = () => {
         <p>Tem certeza que deseja excluir este Naver?</p>
 
         <section>
-          <Button noFill type="button" onClick={handleDeleteToggle}>
-            Cancelar
-          </Button>
           <Button
             type="button"
             onClick={() => handleDeleteNaver(selectedNaverId)}
           >
             Excluir
+          </Button>
+          <Button noFill type="button" onClick={handleDeleteToggle}>
+            Cancelar
           </Button>
         </section>
       </Container>
