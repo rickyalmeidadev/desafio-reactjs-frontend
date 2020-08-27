@@ -41,7 +41,7 @@ export const Overlay = styled.div<IProps>`
   width: 100%;
   height: 100%;
 
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
 
   ${props =>
     props.isShowing
