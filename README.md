@@ -1,44 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Desafio Navedex
 
-## Available Scripts
+![Screenshot from 2020-08-26 23-46-33](https://user-images.githubusercontent.com/60705947/91378364-9ff7a700-e7f6-11ea-865e-1fa5134c1a38.png)
 
-In the project directory, you can run:
+## Sobre o desafio
 
-### `yarn start`
+O sistema consiste em uma web app com fluxo de autenticação, visualização e criação dos navers, possuindo informações como: nomes, idades, cargos, tempo de empresa e projetos que participou. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tecnologias utilizadas
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [TypeScript](https://www.typescriptlang.org/) - TypeScript é um superconjunto tipado de JavaScript que compila para JavaScript simples.
+- [React](https://pt-br.reactjs.org/) - Uma biblioteca JavaScript para criar interfaces de usuário.
+- [Styled Components](https://styled-components.com/) - Primitivos visuais para a idade do componente. Use os melhores bits de ES6 e CSS para estilizar seus aplicativos sem estresse.
+- [Formik](https://formik.org/) - Formik é a biblioteca de formulários de código aberto mais popular do mundo para React e React Native.
+- [Yup](https://www.npmjs.com/package/yup) - Yup é um construtor de esquema JavaScript para análise e validação de valor.
+- [Moment.js](https://momentjs.com/) - Parse, validate, manipulate,
+and display dates and times in JavaScript.
 
-### `yarn test`
+## Utilização
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project is deployed and can be accessed at ...
 
-### `yarn build`
+## Inicializando
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pré-requisitos
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Para executar este projeto localmente, você precisará:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Clonar este repositório - https://github.com/rickyalmeidadev/desafio-reactjs-frontend.
 
-### `yarn eject`
+### Instalação
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone o repositório:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+git clone https://github.com/rickyalmeidadev/desafio-reactjs-frontend
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Instale os pacotes:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+yarn install
 
-## Learn More
+or
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Execute a aplicação:
+
+```sh
+yarn start
+
+or
+
+npm start
+```
+
+4. Certifique-se de que a seguinte porta esteja disponível:
+
+```sh
+PORT: 3000.
+```
+
+5. Acesse a aplicação por meio do link a seguir após executar as etapas de 1 a 4:
+
+```sh
+http://localhost:3000/
+```
+
+## Recursos (bônus)
+
+...
+
+## Autor
+
+Feito com :heart: por Ricky Almeida - [email](mailto:ricky.almeida.dev@gmail.com) - [linkedin](https://www.linkedin.com/in/rickyalmeidadev)
