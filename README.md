@@ -1,10 +1,19 @@
-# Desafio Navedex
+<h1 align="center">Desafio Navedex</h1>
+
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/rickyalmeidadev/desafio-reactjs-frontend">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/rickyalmeidadev/desafio-reactjs-frontend">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/rickyalmeidadev/desafio-reactjs-frontend">
+  <a href="https://github.com/rickyalmeidadev/desafio-reactjs-frontend/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rickyalmeidadev/desafio-reactjs-frontend">
+  </a>
+</p>
 
 ![Screenshot from 2020-08-26 23-46-33](https://user-images.githubusercontent.com/60705947/91378364-9ff7a700-e7f6-11ea-865e-1fa5134c1a38.png)
 
 ## Sobre o desafio
 
-O sistema consiste em uma web app com fluxo de autenticação, visualização e criação dos navers, possuindo informações como: nomes, idades, cargos, tempo de empresa e projetos que participou. 
+O sistema consiste em uma web app com fluxo de autenticação e CRUD dos navers, possuindo informações como: nomes, idades, cargos, tempo de empresa e projetos que participou. 
 
 ## Tecnologias utilizadas
 
@@ -18,7 +27,13 @@ and display dates and times in JavaScript.
 
 ## Utilização
 
-The project is deployed and can be accessed at ...
+Credenciais para acesso:
+```
+email: ricky@nave.rs
+password: nave1234
+```
+
+O projeto está hospedado e pode ser acessado em ...
 
 ## Inicializando
 
