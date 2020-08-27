@@ -58,6 +58,10 @@ const NaversContextProvider: React.FC = ({ children }) => {
     try {
       setIsLoading(true);
       const response = await index();
+      if (!response.data.length) {
+        setHasNavers(false);
+        return;
+      }
       setNavers(response.data);
     } catch (error) {
       setHasNavers(false);
