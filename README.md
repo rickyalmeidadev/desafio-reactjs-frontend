@@ -33,7 +33,7 @@ email: ricky@nave.rs
 password: nave1234
 ```
 
-O projeto está hospedado e pode ser acessado em ...
+O projeto está hospedado e pode ser acessado em https://navedex-rickyalmeida.vercel.app
 
 ## Inicializando
 
@@ -85,7 +85,13 @@ http://localhost:3000/
 
 ## Recursos (bônus)
 
-...
+- Para navers sem imagem ou imagem quebrada, foi implementado um placeholder como alternativa;
+- Durante os carregamentos foram usados loaders e esqueletos com efeito shimmer;
+- Design responsivo para resoluções a partir 320px de largura;
+- Campos de idade e tempo de empresa foram alterados para campos de data, afim de causar uma melhor experiência do usuário;
+- Validação de todos os inputs com messagens personalizadas de feedback utilizando a biblioteca Yup.
+- Uso da Context API para gerenciamento de estado.
+
 
 ## Autor
 
