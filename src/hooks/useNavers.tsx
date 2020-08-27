@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { createContext, useState, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { INaver, show, index, remove } from '../services/api';
@@ -16,7 +17,6 @@ interface INaversContext {
   handleLoading: () => void;
   isLoadingModal: boolean;
   handleDeleteNaver: (id: string) => Promise<void>;
-  hasNavers: boolean;
   fetchNaversDataForFields: (id: string) => Promise<void>;
   formValues: IFormValues;
   clearForm: () => void;
@@ -35,7 +35,6 @@ const initialFormValues = {
 
 const NaversContextProvider: React.FC = ({ children }) => {
   const [navers, setNavers] = useState<INaver[]>([]);
-  const [hasNavers, setHasNavers] = useState(true);
   const [selectedNaver, setSelectedNaver] = useState<INaver>({} as INaver);
   const [selectedNaverId, setSelectedNaverId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -55,33 +54,19 @@ const NaversContextProvider: React.FC = ({ children }) => {
   }, []);
 
   const fetchNavers = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const response = await index();
-      if (!response.data.length) {
-        setHasNavers(false);
-        return;
-      }
-      setNavers(response.data);
-    } catch (error) {
-      setHasNavers(false);
-    } finally {
-      setTimeout(() => setIsLoading(false), 2000);
-    }
+    setIsLoading(true);
+    const response = await index();
+    setNavers(response.data);
+    setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
   const handleSelectNaver = useCallback(
     async (id: string) => {
-      try {
-        setIsLoadingModal(true);
-        handleNaverToggle();
-        const response = await show(id);
-        setSelectedNaver(response.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setTimeout(() => setIsLoadingModal(false), 2000);
-      }
+      setIsLoadingModal(true);
+      handleNaverToggle();
+      const response = await show(id);
+      setSelectedNaver(response.data);
+      setTimeout(() => setIsLoadingModal(false), 2000);
     },
     [handleNaverToggle],
   );
@@ -92,18 +77,12 @@ const NaversContextProvider: React.FC = ({ children }) => {
 
   const handleDeleteNaver = useCallback(
     async (id: string) => {
-      try {
-        setIsLoading(true);
-        await remove(id);
-        handleDeleteToggle();
-        handleSuccessToggle();
-
-        setNavers(navers.filter(naver => naver.id !== id));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
+      setIsLoading(true);
+      await remove(id);
+      handleDeleteToggle();
+      handleSuccessToggle();
+      setNavers(navers.filter(naver => naver.id !== id));
+      setIsLoading(false);
     },
     [handleDeleteToggle, handleSuccessToggle, navers],
   );
@@ -140,7 +119,6 @@ const NaversContextProvider: React.FC = ({ children }) => {
         handleLoading,
         isLoadingModal,
         handleDeleteNaver,
-        hasNavers,
         fetchNaversDataForFields,
         formValues,
         clearForm,
