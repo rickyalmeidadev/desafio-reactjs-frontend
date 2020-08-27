@@ -20,7 +20,13 @@ const Field: React.FC<IProps> = ({ label, name, ...rest }) => {
         {({ field }: FieldProps) => (
           <>
             <Label htmlFor={name}>{label}</Label>
-            <Input {...rest} {...field} name={name} id={name} />
+            <Input
+              {...rest}
+              {...field}
+              name={name}
+              id={name}
+              placeholder={label}
+            />
             <ErrorMessage name={name} component={FieldError} />
             {isLoading && (
               <FieldLoading>
