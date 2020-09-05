@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Form as FormikForm } from 'formik';
-
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -20,7 +18,7 @@ export const Content = styled.div`
   align-items: center;
 `;
 
-export const Form = styled(FormikForm)`
+export const Form = styled.form`
   position: relative;
   width: 100%;
   max-width: 448px;

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { Form as FormikForm } from 'formik';
-
-export const Form = styled(FormikForm)`
+export const Form = styled.form`
   position: relative;
   display: flex;
   flex-wrap: wrap;
