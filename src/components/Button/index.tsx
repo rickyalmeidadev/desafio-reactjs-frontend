@@ -9,7 +9,12 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<Props> = ({ children, fullWidth, noFill, ...rest }) => {
   return (
-    <CustomButton {...rest} fullWidth={fullWidth} noFill={noFill}>
+    <CustomButton
+      {...rest}
+      fullWidth={fullWidth}
+      noFill={noFill}
+      data-testid="button"
+    >
       {children}
     </CustomButton>
   );
