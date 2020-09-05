@@ -40,4 +40,4 @@ const Field: React.FC<IProps> = ({ label, name, ...rest }) => {
   );
 };
 
-export default Field;
+export default React.memo(Field);

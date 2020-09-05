@@ -62,4 +62,4 @@ const NaverCard: React.FC<IProps> = ({ id, url, name, job_role }) => {
   );
 };
 
-export default NaverCard;
+export default React.memo(NaverCard);
